@@ -3,3 +3,8 @@ Kevin Clelland
 So I would like to setup Kali on my personal machine, and I certainly have all the specs for it. 
 However, it's being rather difficult right now with an error that I have no idea how to fix, 
 so for the time being I'm planning on using the lab computers (I am on campus). 
+
+I might try and set it up in vmware, which is another virtual machine program I already have setup
+on my computer, but I'm hesitant to do that because I've had a problem before with vmware where 
+virtual machines connected to the internet have prevented the non-virtual wifi devices from functioning, 
+and have also just spontaneously deleted my wifi drivers (separate incidents), so I would really prefer to just get virtualbox working. 

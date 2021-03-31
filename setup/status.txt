@@ -1,0 +1,5 @@
+Kevin Clelland
+
+So I would like to setup Kali on my personal machine, and I certainly have all the specs for it. 
+However, it's being rather difficult right now with an error that I have no idea how to fix, 
+so for the time being I'm planning on using the lab computers (I am on campus). 

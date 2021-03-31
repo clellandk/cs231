@@ -8,3 +8,5 @@ I might try and set it up in vmware, which is another virtual machine program I 
 on my computer, but I'm hesitant to do that because I've had a problem before with vmware where 
 virtual machines connected to the internet have prevented the non-virtual wifi devices from functioning, 
 and have also just spontaneously deleted my wifi drivers (separate incidents), so I would really prefer to just get virtualbox working. 
+
+Update: I did just decide to set it up in vmware. It's now working fine. 

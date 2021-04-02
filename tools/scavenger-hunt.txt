@@ -15,6 +15,6 @@
 
 7. wget (url)   - this will save it to whatever directory it's in (home directory by default in kali) 
 
-8. 
+8. curl -l (url)   will give you the html
 
-
+9. 

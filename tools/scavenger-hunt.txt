@@ -17,4 +17,8 @@
 
 8. curl -l (url)   will give you the html
 
-9. 
+9. I believe this command would do it: 
+curl -x (your IP):(port number) (url)
+but if there's security in place I would need this: 
+curl -U username:password -x (your IP):(port number) (url)
+as well as a valid username and password. 

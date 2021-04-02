@@ -6,4 +6,15 @@
 
 3. host (IP address)
 
-4. 
+4. On sending computer: nc -w 3 (destination) (port number) < (file + path)
+   On recieving computer: nc -l -p (port number) > (file + path) 
+   
+5. sudo netstat -tnlp | grep :22
+   
+6. sudo netstat -tunlp
+
+7. wget (url)   - this will save it to whatever directory it's in (home directory by default in kali) 
+
+8. 
+
+

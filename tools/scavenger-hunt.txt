@@ -1,1 +1,9 @@
-1. 
+(All commands for Kali terminal) 
+
+1. echo $(wget -qO - https://api.ipify.org)
+
+2. ping (hostname)
+
+3. host (IP address)
+
+4. 

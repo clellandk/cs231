@@ -1,0 +1,44 @@
+Kevin Clelland and Eli Arbogast 
+
+===== DAYTIME =====
+
+1. 
+
+1	192.168.204.130	129.6.15.28	TCP	76	51014 → 13 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM=1 TSval=130463907 TSecr=0 WS=128
+2	129.6.15.28	192.168.204.130	TCP	62	13 → 51014 [SYN, ACK] Seq=0 Ack=1 Win=64240 Len=0 MSS=1460
+3	192.168.204.130	129.6.15.28	TCP	56	51014 → 13 [ACK] Seq=1 Ack=1 Win=64240 Len=0
+
+2. 51014, it needs a port because that's how you communicate data. And it doesn't have the same port just because of how the server is setup. 
+
+3. Frame 4  - 4	129.6.15.28	192.168.204.130	DAYTIME	107	DAYTIME Response
+
+4. It tells you the protocol, the type (response), the Modified Julian Date, the actual date and time, a code for whether it's daylight savings time, whether a leap second will be added, a health digit, number of milliseconds that NIST advances the time code, a UTC which is always included, and an ontime marker. 
+
+5. Synchronization packet
+
+6. Acknoledgement Code
+
+7. Finished/end 
+
+8. We initiated the closing of the connection. You can tell because the packet that contains FIN originated at our IP addres, not the servers. 
+
+====== HTTP =======
+
+1. 78
+
+2. Packet 7
+7	0.047850568	192.168.204.130	45.79.89.123	HTTP	397	GET /index.html HTTP/1.1 
+You can tell because it contains a GET request with the /index.html.
+
+3. Packet 11
+11	1.504093934	192.168.204.130	45.79.89.123	HTTP	366	GET /jeff_square_head.jpg HTTP/1.1 
+You can tell because it conatins a GET request with the image. 
+
+
+========= Questions =========
+
+1. What is PSH? 
+
+2. Why are there so many packets? What do they all do? 
+
+3. What does WIN = 64240   inciate, and why is it the same for all of the packets?

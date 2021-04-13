@@ -79,5 +79,7 @@ def Decrypt(data,key):
         plainText = plainText + chr(data[x]**key % 4661)
     print(plainText)
     
-This algorithm basically has 3 steps. First, it takes nBob and factors it via brute force, checking every odd number up to sqrt(nBob) until it finds a factor. Note that this assumes a certain amount of competence from Bob, namely that nBob is the product of exactly two prime factors and that 2 is not one of them. The second step in the algorithm is using the factorization to solve the equation eBob * D = 1 mod (p-1)(q-1), again using the brute force technique. That gives you D, which is used to decypt a number M in the final step, by performing M^D mod nBob and then converting from ASCII. 
+This algorithm basically has 3 steps. First, it takes nBob and factors it via brute force, checking every odd number up to sqrt(nBob) until it finds a factor. Note that this assumes a certain amount of competence from Bob, namely that nBob is the product of exactly two prime factors and that 2 is not one of them. The second step in the algorithm is using the factorization to solve the equation eBob * D = 1 mod (p-1)(q-1), again using the brute force technique. That gives you D, which is used to decrypt a number M in the final step, by performing M^D mod nBob and then converting from ASCII. 
+
+If nBob was much larger, we would never make it past the Factor function because it would take years at least to find a factor. This algorithm only grows as sqrt(n) but in practice we use numbers that are so large that even sqrt(n) complexity is totally unresonable for solving the problem. 
 

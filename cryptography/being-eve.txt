@@ -5,7 +5,7 @@ g = 17 and p = 61.
 Alice sent Bob the number 46.
 Bob sent Alice the number 5.
 
-The shared secret is 12. To find this out I used the following python code:
+The shared secret is 12. To find this out I wrote the following python code:
 def main():
     private = DiffieHellman()
     print(private)
@@ -30,3 +30,54 @@ def DiffieHellman():
 The method used here is just brute forcing. I computed g^n mod p at n=1 and then just kept increasing n by 1 until I got the value Alice sent to Bob. Then I did a sanity check that if I encrypted the way Alice did with n = 14 I would get 46 (and I did). Finally, I took the value Bob sent and encrypted it using Alice's key (which I now have) to arrive at the value that Alice must conclude is the shared value. I also switched 46 and 5 in the code to double check that Bob gets the same shared secret (he does, his private key is 26). 
 
 If p was much larger, this method wouldn't fail exactly, so much as take an impossibly large amount of time. The while loop would just run "forever" because it would take an incredible amount of time to check all of the possible numbers. 
+
+RSA:
+(e_Bob, n_Bob) = (31, 4661)
+
+The decrypted data says: 
+Dear Bob, Check this out.  https://www.schneier.com/blog/archives/2017/12/e-mail_tracking_1.html Yikes! Your friend, Alice
+
+To decrypt this I wrote the following code: 
+import math
+
+
+def main():
+    print("RSA:")
+    private = RSA()
+    print("Decrypting Key:", private)
+    dataList2 = [2677, 4254, 1152, 4645]
+    dataList = [2677, 4254, 1152, 4645, 4227, 1583, 2252, 426, 3492, 4227, 3889, 1789, 4254, 1704, 1301, 4227, 1420, 1789, 1821, 1466, 4227, 2252, 3303, 1420, 2234, 4227, 4227, 1789, 1420, 1420, 4402, 1466, 4070, 3278, 3278, 414, 414, 414, 2234, 1466, 1704, 1789, 2955, 4254, 1821, 4254, 4645, 2234, 1704, 2252, 3282, 3278, 426, 2991, 2252, 1604, 3278, 1152, 4645, 1704, 1789, 1821, 4484, 4254, 1466, 3278, 1512, 3602, 1221, 1872, 3278, 1221, 1512, 3278, 4254, 1435, 3282, 1152, 1821, 2991, 1945, 1420, 4645, 1152, 1704, 1301, 1821, 2955, 1604, 1945, 1221, 2234, 1789, 1420, 3282, 2991, 4227, 4410, 1821, 1301, 4254, 1466, 3454, 4227, 4410, 2252, 3303, 4645, 4227, 3815, 4645, 1821, 4254, 2955, 2566, 3492, 4227, 3563, 2991, 1821, 1704, 4254]
+    Decrypt(dataList,private)
+
+
+def RSA():
+    eBob = 31
+    nBob = 4661
+    p = Factor(nBob)
+    q = nBob//p
+    print("Factors:", p, q)
+    smallN = (p-1)*(q-1)
+    guess = 2
+    while (guess < nBob):
+        if (eBob*guess % smallN == 1):
+            return guess
+        else:
+            guess = guess + 1
+
+
+def Factor(num):
+    p = 3
+    while (p < math.sqrt(num)):
+        if (num % p == 0):
+            return p
+        else:
+            p = p + 2
+
+def Decrypt(data,key):
+    plainText = ""
+    for x in range (0,len(data)):
+        plainText = plainText + chr(data[x]**key % 4661)
+    print(plainText)
+    
+This algorithm basically has 3 steps. First, it takes nBob and factors it via brute force, checking every odd number up to sqrt(nBob) until it finds a factor. Note that this assumes a certain amount of competence from Bob, namely that nBob is the product of exactly two prime factors and that 2 is not one of them. The second step in the algorithm is using the factorization to solve the equation eBob * D = 1 mod (p-1)(q-1), again using the brute force technique. That gives you D, which is used to decypt a number M in the final step, by performing M^D mod nBob and then converting from ASCII. 
+

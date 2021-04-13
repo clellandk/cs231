@@ -1,0 +1,32 @@
+Kevin Clelland
+
+Diffie Hellman:
+g = 17 and p = 61.
+Alice sent Bob the number 46.
+Bob sent Alice the number 5.
+
+The shared secret is 12. To find this out I used the following python code:
+def main():
+    private = DiffieHellman()
+    print(private)
+    print("Check:")
+    print(17**private % 61)
+    print("Shared secret:")
+    print(5**private % 61)
+
+
+def DiffieHellman():
+    g = 17
+    p = 61
+    target = 46
+    guess = 2
+    while (guess < p):
+        num = g**guess % p
+        if (num == target):
+            return guess
+        else:
+            guess = guess + 1
+
+The method used here is just brute forcing. I computed g^n mod p at n=1 and then just kept increasing n by 1 until I got the value Alice sent to Bob. Then I did a sanity check that if I encrypted the way Alice did with n = 14 I would get 46 (and I did). Finally, I took the value Bob sent and encrypted it using Alice's key (which I now have) to arrive at the value that Alice must conclude is the shared value. I also switched 46 and 5 in the code to double check that Bob gets the same shared secret (he does, his private key is 26). 
+
+If p was much larger, this method wouldn't fail exactly, so much as take an impossibly large amount of time. The while loop would just run "forever" because it would take an incredible amount of time to check all of the possible numbers. 

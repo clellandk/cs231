@@ -38,8 +38,8 @@ The decrypted data says:
 Dear Bob, Check this out.  https://www.schneier.com/blog/archives/2017/12/e-mail_tracking_1.html Yikes! Your friend, Alice
 
 To decrypt this I wrote the following code: 
-import math
 
+import math
 
 def main():
     print("RSA:")

@@ -1,0 +1,22 @@
+Kevin Clelland and Josiah Misplon 
+
+Scenario 1:
+
+You would start with Diffie Hellman to establish a shared key over a public network, and then you could do a symmetric encryption algorithm like AES to send the longer message. 
+
+This works because AES is hard to decrypt without the key (and is also quick), and because Diffie Hellman allows them to agree on a key publicly without leaking the information to Eve. 
+
+Scenario 2:
+Alice encrypts a key K using Bob’s public key for RSA. Alice then sends the message M encrypted using K with symmetric encryption. Alice also encrypts the cryptographic hash of the unencrypted message M using Alice’s private key for RSA. Alice then sends that encrypted cryptographic hash of M. Bob then decrypts the key K using his private key and then decrypts the encrypted message using K to reach M. Finally, Bob decrypts the encrypted cryptographic hash of M using Alice’s public key and then hashes M to compare against the decrypted cryptographic hash sent by Alice.
+
+This works because once again, the RSA/AES combination is hard to crack, so the message can’t be read. If Mal modifies the key, then it won’t decrypt the message into something readable, so Bob will know something has happened. If Mal modifies the hash, then it won’t match the message, and Bob will know something has happened. And it’s important to note that because Mal doesn’t have Alice’s private key, and can’t read the message, Mal can’t convincingly pretend to be Alice. 
+
+Scenario 3: 
+Alice encrypts a key K first using Alice’s private key and then Bob’s public key. Alice sends the encrypted key. Alice then encrypts the message M using symmetric encryption with key K and sends the encrypted message. Bob then decrypts the key by first applying Bob’s private key and then Alice’s public key. Then Bob can decrypt the message M using key K with symmetric encryption. 
+
+This works because Bob is the only person who has both Alice’s public key and Bob’s private key, which are both necessary for decryption. And Bob is confident that Alice sent the message because Eve would require Alice’s private key to convincingly do that. 
+
+Scenario 4:
+Alice encrypts a key K first using Alice’s private key and then Bob’s public key. Alice sends the encrypted key. Alice then encrypts the message M using symmetric encryption with key K and sends the encrypted message. Alice also applies a cryptographic hash to M and then encrypts that hash with her private key, sending the encrypted results to Bob. Bob then decrypts the key K by first applying Bob’s private key and then Alice’s public key. Then Bob can decrypt the message M using key K with symmetric encryption. Bob can also decrypt the encrypted hash of the message using Alice’s public key to compare the results with Bob’s application of the cryptographic hash to the decrypted message. 
+
+This works because as in number 3, there’s a secure message that Eve can’t read and Bob knows Alice sent the message since the message/key are the result of Alice’s private key. Furthermore, the encrypted hash gives Bob proof that Alice sent the document, because he has a hash of the contract that decrypts with Alice’s public key (which only Alice could’ve made, and why would she send a hash to Bob without the corresponding contract). Furthermore, Alice can be assured Bob can’t modify the document, because if Bob makes any other document he can’t encrypt it’s hash in such a way that it decrypts with Alice’s public key (because he doesn’t have her private key), so everything works. 

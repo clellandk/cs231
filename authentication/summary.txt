@@ -1,16 +1,16 @@
 Part 1
 Passwords cracked: 1162
-Total time: 34.90 s
+Total time: 34.90s
 Number of hashes computed: 267751 
 Passwords cracked per number of hashes computed: 1162/267751 = 0.00433985307
 Time per password cracked: 34.90/1162 = 0.0300344234
 
 Part 2
-Passwords cracked: [number cracked]
-Total time: [user time from a "time" command]
-Number of hashes computed: [number of MD5's computed] 
-Passwords cracked per number of hashes computed: [passwords per hash]
-Time per password cracked: [seconds per password]
+Passwords cracked: 48 (Out of 100, I didn't have time to run the full file)
+Total time: 43.02s
+Number of hashes computed: 26775100 
+Passwords cracked per number of hashes computed: 48/26775100 = 0.00000179271
+Time per password cracked: 43.02/48 = 0.89625
 
-Factor by which your time per password lengthened, and why.
-[number and explanation]
+
+The process took about 29.84 times longer. What changes with salted passwords is that you can't just hash all the potential passwords and go compare hashes, because each password you want to crack has a different salt. You have to hash all of the potential passwords (with the salt) everytime you want to crack a single password, which takes the complexity and multiplies it times the number of passwords you're trying to crack.  

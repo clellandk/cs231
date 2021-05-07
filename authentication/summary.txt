@@ -1,0 +1,16 @@
+Part 1
+Passwords cracked: 1162
+Total time: 34.90 s
+Number of hashes computed: 267751 
+Passwords cracked per number of hashes computed: 1162/267751 = 0.00433985307
+Time per password cracked: 34.90/1162 = 0.0300344234
+
+Part 2
+Passwords cracked: [number cracked]
+Total time: [user time from a "time" command]
+Number of hashes computed: [number of MD5's computed] 
+Passwords cracked per number of hashes computed: [passwords per hash]
+Time per password cracked: [seconds per password]
+
+Factor by which your time per password lengthened, and why.
+[number and explanation]
